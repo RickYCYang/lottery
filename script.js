@@ -28,12 +28,12 @@ window.addEventListener("load", () => {
     result.classList.add("hidden");
     list.innerHTML = "";
     setTimeout(() => {
-      [10, 20, 30].map((num) => {
+      [11, 25, 45].map((num) => {
         list.appendChild(document.createElement("li")).textContent = num;
         return;
       });
       result.classList.remove("hidden");
-    }, 3000);
+    }, 1000);
   };
 
   submit.addEventListener("click", formSubmit);
