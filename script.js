@@ -1,6 +1,4 @@
 window.addEventListener("load", () => {
-  console.log("hello World");
-
   const count = document.querySelector("#count");
   const start = document.querySelector("#start");
   const end = document.querySelector("#end");
@@ -12,7 +10,6 @@ window.addEventListener("load", () => {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log("value", count.value);
     if (!count.value) {
       return alert("請輸入抽出幾組數字");
     }
@@ -27,14 +24,26 @@ window.addEventListener("load", () => {
 
     result.classList.add("hidden");
     list.innerHTML = "";
+
     setTimeout(() => {
-      [11, 25, 45].map((num) => {
+      let final = [];
+      for (let i = 0; i < count.value; i++) {
+        let num = getRandom(start.value, end.value);
+        final.push(num);
+      }
+      final.map((num) => {
         list.appendChild(document.createElement("li")).textContent = num;
         return;
       });
       result.classList.remove("hidden");
-    }, 1000);
+      submit.disabled = false;
+    }, 0);
   };
 
   submit.addEventListener("click", formSubmit);
 });
+
+function getRandom(min, max) {
+  const result = parseInt(Math.random() * (max - min)) + parseInt(min);
+  return result;
+}
